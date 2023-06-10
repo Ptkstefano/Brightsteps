@@ -34,7 +34,7 @@ SECURE_HSTS_PRELOAD = True
 SECURE_SSL_REDIRECT = False
 SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
-CSRF_TRUSTED_ORIGINS = ['https://web-production-2bbf.up.railway.app',]
+CSRF_TRUSTED_ORIGINS = ['https://aut-railway-production.up.railway.app',]
 
 
 # Application definition
