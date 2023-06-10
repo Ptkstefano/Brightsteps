@@ -1,0 +1,108 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+</head>
+<body>
+
+    {% include "blocks/navbar_sub.html" %}
+    
+    <div class="form__main">
+
+        <h1>Registro de novo profissional</h1>
+
+
+        <form action="save_edit_profi" method="POST">
+        {% csrf_token %}
+
+        <input type="hidden" name="pk" value="{{profissional.pk}}">
+
+        <div class="form__main__section">
+
+            <h2>Dados Profissional:</h2>
+
+            <div class="form__main__subsection">
+
+                <div class="form__main__item">
+                    <label for="nome">Nome:</label>
+                    <input type="text" name="nome" maxlength="30" required id="id_nome" value="{{profissional.nome}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="sobrenome">Sobrenome:</label>
+                    <input type="text" name="sobrenome" maxlength="30" required id="id_sobrenome" value="{{profissional.sobrenome}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="cpf">CPF:</label>
+                    <input type="text" name="cpf" maxlength="30" required id="id_cpf" value="{{profissional.cpf}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="email">E-mail:</label>
+                    <input type="email" name="email" maxlength="254" required id="id_email" value="{{profissional.email}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="data_nascimento">Data de Nascimento:</label>
+                    <input type="date" name="data_nascimento" required id="id_data_nascimento" value="{{profissional.data_nascimento}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="tel_fixo">Telefone fixo:</label>
+                    <input type="text" name="tel_fixo" maxlength="30" required id="id_tel_fixo" value="{{profissional.tel_fixo}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="tel_celular">Telefone celular:</label>
+                    <input type="text" name="tel_celular" maxlength="30" required id="id_tel_celular" value="{{profissional.tel_celular}}">
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="form__main__section">
+
+            <h2>Endereço profissional</h2>
+
+            <div class="form__main__subsection">
+
+                <div class="form__main__item">
+                    <label for="cidade">Cidade:</label>
+                    <input type="text" name="cidade" maxlength="30" required id="id_cidade" value="{{endereco.cidade}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="estado">Estado:</label>
+                    <input type="text" name="estado" maxlength="30" required id="id_estado" value="{{endereco.estado}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="cep">CEP:</label>
+                    <input type="text" name="cep" maxlength="30" required id="id_cep" value="{{endereco.cep}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="numero">Número:</label>
+                    <input type="text" name="numero" maxlength="30" required id="id_numero" value="{{endereco.numero}}">
+                </div>
+                <div class="form__main__item">
+                    <label for="rua">Rua:</label>
+                    <input type="text" name="rua" maxlength="30" required id="id_rua" value="{{endereco.rua}}">
+                </div>
+
+            </div>
+        </div>
+    
+        <div class="form__submit">
+            <input type="submit">
+        </div>
+        </form>
+
+    </div>
+
+
+
+
+
+</body>
+</html>

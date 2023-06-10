@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;700&display=swap');
+
+body{
+  font-family: 'Lato', sans-serif;
+  display:flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: #BBDAED;
+}
+
+main{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1{
+  font-size: 46px;
+  font-weight: bold;
+  text-align: center;
+}
+
+h2{
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Style the tab */
+
+  .subtab {
+    overflow: hidden;
+    background-color: #f1f1f1;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+  }
+
+  .subtab__subtab{
+    background-color: #BBDAED;
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+  }
+
+  .subtab button {
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    width: 100%;
+    border: dashed;
+    border-radius: 50px;
+    margin: 1px;
+  }
+
+  .tab {
+    display: flex;
+    justify-content: space-around;
+    margin:5px;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: #f1f1f1;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 14px 16px;
+    transition: 0.3s;
+    width: 100%;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .tab button:hover {
+    background-color: #ddd;
+    border-style: dashed;
+  }
+  
+  .tab button.active {
+    background-color: #ccc;
+    border-style: dashed;
+  }
+
+  .subtab button:hover {
+    background-color: #75c3f4;
+  }
+  
+  .subtab button.active {
+    background-color: #75c3f4;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+  }
+
+  .subtabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+  }
+
+  .subtab__submit input[type=submit]{
+    margin:5px 2px;
+    background-color: #c8f6c3;
+    border: solid;
+    border-radius: 2px;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    width: 100%;
+  }
+
+  .subtab__submit input[type=submit]:hover{
+    transition: 0.3s;
+    border-radius: 5px;
+    background-color: #7bf46e;
+  }
+
+  .checklist_form_main_div{
+    width: 70vw;
+    border: solid;
+    border-radius: 20px;
+    border-width: 3px;
+  }
+
+  .level__title{
+    margin:15px 0;
+  }
+
+  hr {
+    border-top: 3px dashed black;
+    margin:10px 0;
+  }
+
+  .form__element{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form__title{
+    margin: 10px 0;
+  }
+  .form__list{
+    margin: 10px 0px;
+    font-size:20px;
+    display: flex;
+    flex-direction: row;
+  }
+  .form__desc{
+    font-size:20px;
+  }
+  

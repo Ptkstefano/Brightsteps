@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+body{
+  font-family: Lato;
+  font-weight: 400;
+    background-color: #BBDAED;
+}
+
+h1 {
+  font-weight: 600;
+  font-size: 30px;
+}
+
+th{
+  border-bottom: 2px solid black;
+  padding: 8px;
+}
+
+td{
+  border-right: 2px solid black;
+  border-bottom: 1px solid black;
+  padding: 8px;
+}
+
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-items: center;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.main__patient__card{
+  width: 80vw;
+  border: 2px solid;
+  border-radius: 5px;
+  background-color: #68bbff;
+  margin: 10px 20px;
+  box-shadow: 5px 5px rgba(0, 0, 0, 0.175);
+}
+
+.main__patient__card__header{
+  display: flex;
+  font-weight: 600;
+  font-size:20px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5vw;
+}
+
+.main__patient__card__header:hover{
+  background-color: #8bcbff;
+  cursor:pointer;
+
+}
+
+
+.main__patient__card__header button{
+  background-color: #BBDAED;
+  padding:10px;
+  border: 2px solid;
+  border-radius: 5px;
+}
+
+.main__patient__card__header button:hover {
+  background-color: #a5d3f1;
+  cursor: pointer;
+}
+
+.main__patient__card__body{
+  background-color: #94d3ff;
+  padding: 0.5vw;
+  display:none;
+}
+
+.main__patient__card__body__topgrid{
+  display: grid;
+  grid-template-columns: 45% 45%;
+  margin-bottom: 10px;
+}
+
+.main__patient__card__body__bottomgrid{
+  display: grid;
+  grid-template-columns: 45% 45%;
+}
+
+
+
+

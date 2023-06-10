@@ -1,0 +1,197 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/adm.css' %}">
+</head>
+<body>
+
+    {% include "blocks/navbar_sub.html" %}
+
+    <h1>Painel administrador</h1>
+    <br>
+
+    <div class="panel__main">
+
+            <h1>Pacientes</h1>
+        {% for paciente in lista_pacientes %}
+
+
+        <form action="/checklist_find" method="POST" id="checklist_find{{paciente.pk}}">
+            {% csrf_token %}
+            <input type="hidden" value="{{paciente.cod_acesso}}" name="codigo">
+        </form>
+
+        <div class="paciente__main">
+            <div class="paciente__main__header" id="{{paciente.pk}}" onclick="open_card('paci{{paciente.pk}}')">
+                <h1>{{paciente.nome}} {{paciente.sobrenome}}</h1>
+            </div>
+            <div class="paciente__main__body" id='paci{{paciente.pk}}' style="display:none;">
+                <table>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Código</th>
+                        <th>Data de nascimento</th>
+                        <th>CPF</th>
+                        <th>Data de registro</th>
+                    </tr>
+                    <tr>
+                        <td>{{paciente.nome}} {{paciente.sobrenome}}</td>
+                        <td>{{paciente.cod_acesso}}</td>
+                        <td>{{paciente.data_nascimento}}</td>
+                        <td>{{paciente.cpf}}</td>
+                        <td>{{paciente.data_registro}}</td>
+
+                    </tr>
+                    <tr>
+                        <th>Nome responsável</th>
+                        <th>Relação</th>
+                        <th>Telefone</th>
+                        <th>Telefone</th>
+                        <th>E-mail</th>
+                    </tr>
+                    <tr>
+                        <td>{{ paciente.responsavel.nome_completo }}</td>
+                        <td>{{ paciente.responsavel.relacao }}</td>
+                        <td>{{ paciente.responsavel.telefone1 }}</td>
+                        <td>{{ paciente.responsavel.telefone2 }}</td>
+                        <td>{{ paciente.responsavel.email }}</td>
+                    </tr>
+                    <tr>
+                        <th>Cidade</th>
+                        <th>Estado</th>
+                        <th>CEP</th>
+                        <th>Logradouro</th>
+                        <th>Número</th>
+                    </tr>
+                    <tr>
+                        <td>{{ paciente.endereco.cidade }}</td>
+                        <td>{{ paciente.endereco.estado }}</td>
+                        <td>{{ paciente.endereco.cep }}</td>
+                        <td>{{ paciente.endereco.rua }}</td>
+                        <td>{{ paciente.endereco.numero }}</td>
+                    </tr>
+                </table>
+
+                <div class='paciente__main__options'>
+                    
+                    <div class="paciente__main__options__buttons">
+                        <a href="/checklist_edit/{{paciente.pk}}"><button> Editar checklist </button></a>
+                        <button form="checklist_find{{paciente.pk}}"> Conferir checklist </button>
+                        <a href="/registro_paci/{{paciente.pk}}"><button> Editar dados </button></a>        
+
+                            {% if paciente.active == True %}
+                            <a href="/gerencia/change?model=paciente&pk={{paciente.pk}}"><button>Desativar</button></a>
+                            {% else %}
+                            <a href="/gerencia/change?model=paciente&pk={{paciente.pk}}"><button>Ativar</button></a>
+                            {% endif %}
+
+                    </div>
+                    <div class="paciente__main__profi">
+                        <div class="paciente__main__profi__left">
+                            <h2>Profissionais associados ao paciente:</h2>
+
+                            {% for profissional in paciente.profissional.all %}
+                                <li>{{ profissional.nome }} {{ profissional.sobrenome }}   <a href="/gerencia/remove?pk={{paciente.pk}}&profi_pk={{profissional.pk}}"><button>Remover</button></a></li>
+                            {%endfor%}
+                        </div>
+                        <div class="paciente__main__profi__right">
+                            <form action="/gerencia/add" method="GET">
+                                <input type="hidden" name="paciente" value="{{paciente.pk}}">
+                                <span>Associar novo profissional:</span>
+                                <select name="profissional" id="profissional">
+                                    {% for profissional in lista_profissionais %}
+                                        <option value="{{profissional.pk}}">{{profissional.nome}}</option>
+                                    {%endfor%}
+                                </select>
+                                <button>Ok!</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+
+    <div class="panel__main">
+
+        <h1>Profissionais</h1>
+
+        <a href="registro_prof"><button>Registrar novo profissional</button></a>
+
+        {% for profissional in lista_profissionais %}
+
+        <form action="/edit_profi" method="POST" id="edit_profi{{profissional.pk}}">
+            {% csrf_token %}
+            <input type="hidden" value="{{profissional.pk}}" name="pk">
+        </form>
+
+        <div class="profissional__main">
+            <div class="profissional__main__header" id="{{profissional.pk}}" onclick="open_card('profi{{profissional.pk}}')">
+                <h1>{{profissional.nome}} {{profissional.sobrenome}}</h1>
+            </div>
+
+            <div id="profi{{profissional.pk}}" class="profissional__main__body">
+
+            <table>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>E-mail</th>
+                    <th>data_nascimento</th>
+                    <th>Telefone</th>
+                </tr>
+                <tr>
+                    <td>{{profissional.nome}} {{profissional.sobrenome}}</td>
+                    <td>{{profissional.cpf}}</td>
+                    <td>{{profissional.email}}</td>
+                    <td>{{profissional.data_nascimento}}</td>
+                    <td>{{profissional.tel_fixo}}<br>{{profissional.tel_celular}}</td>
+                </tr>
+                <tr>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>CEP</th>
+                    <th>Logradouro</th>
+                    <th>Número</th>
+                </tr>
+                <tr>
+                    <td>{{ profissional.endereco.cidade }}</td>
+                    <td>{{ profissional.endereco.estado }}</td>
+                    <td>{{ profissional.endereco.cep }}</td>
+                    <td>{{ profissional.endereco.rua }}</td>
+                    <td>{{ profissional.endereco.numero }}</td>
+                </tr>
+                </table>
+                <div>
+                    <button form="edit_profi{{profissional.pk}}"> Editar dados </button>
+                    {% if profissional.active == True %}
+                        <a href="/gerencia/change?model=profissional&pk={{profissional.pk}}"><button>Desativar</button></a>
+                    {% else %}
+                        <a href="/gerencia/change?model=profissional&pk={{profissional.pk}}"><button>Ativar</button></a>
+                    {% endif %}  
+                </div>
+            </div>
+        </div>
+
+            {% endfor %}
+            
+
+    </div>
+
+    <script src="{% static 'button_div.js'%}"></script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&family=Montserrat:wght@400;500;600;700&display=swap');
+
+body{
+  font-family: Lato;
+  font-weight: 400;
+    background-color: #BBDAED;
+}
+
+th { 
+    font-weight: 700;
+}
+
+.panel__main{
+    display: flex;
+    flex-direction: column;
+    width: 75%;
+}
+
+.paciente__main{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 10vh 10vw 10vh 10vw;
+
+}
+
+.paciente__main__header{
+    padding: 10px 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(224, 224, 224);
+    border: solid 2px black;
+}
+
+.paciente__main__header:hover{
+    cursor:pointer;
+    background-color: rgb(203, 203, 203);
+}
+
+.paciente__main__body{
+    width: 100%;
+    background-color: #c2d5e2;
+    border: solid 1px black;
+}
+
+.paciente__main table{
+    width: 100%;
+}
+
+.paciente__main tr, td, th{
+    border: solid 1px black;
+    border-bottom: 3px solid black;
+}
+
+.paciente__main__options{
+    display: flex;
+    flex-direction: column;
+}
+
+.paciente__main__options__buttons{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: space-between;
+}
+
+.paciente__main__options__buttons button{
+    width: 100%;
+    padding: 10px 0;
+    border: solid 1px black;
+}
+
+.paciente__main__options__buttons button:hover{
+    background-color:rgb(200, 200, 200);
+    cursor:pointer;
+}
+
+.paciente__main__profi{
+    margin: 10px 0 0 0;
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.paciente__main__profi select{
+    text-align: center;
+    padding: 5px 5px;
+    border:solid 2px black;
+    border-radius:5px;
+}
+
+.paciente__main__profi button{
+    text-align: center;
+    padding: 5px 20px;
+    border:solid 2px black;
+    border-radius:5px;
+}
+
+.paciente__main__profi__right form{
+    width: 100%;
+}
+
+.paciente__main__profi button:hover{
+    background-color: grey;
+    cursor:pointer;
+}
+
+.paciente__main__profi__right{
+    display: grid;
+    justify-content: space-evenly;
+}
+
+
+.paciente__main__profi__left{
+    margin:5px
+}
+
+.paciente__main__profi__left li{
+    margin: 5px 0;
+}
+
+.profissional__main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin: 10vh 10vw 10vh 10vw;
+}
+
+.profissional__main__header{
+    padding: 10px 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(224, 224, 224);
+    border: solid 2px black;
+}
+
+.profissional__main__header{
+    padding: 10px 30px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    background-color: rgb(224, 224, 224);
+    border: solid 2px black;
+}
+
+.profissional__main__header:hover{
+    cursor:pointer;
+    background-color: rgb(203, 203, 203);
+}
+
+.profissional__main__body{
+    width: 100%;
+    background-color: #c2d5e2;
+    border: solid 1px black;
+}
+
+.profissional__main table{
+    width: 100%;
+}

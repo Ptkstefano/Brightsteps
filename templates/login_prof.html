@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    <div class="login__page">
+    
+        <div class="logo">
+            Brigthsteps
+        </div>
+
+        <div class="login_form">
+            <form action="login_prof" method="POST">
+                {% csrf_token %}
+                    <label for="username">Usuário</label>
+                    <input type="text" name="username" placeholder="">
+                    <br>
+                    <label for="password">Senha</label>
+                    <input type="password" name="password" placeholder="">
+                    <br>
+                    <input type="submit">
+            </form>
+        </div>
+    </div>
+</body>
+</html>

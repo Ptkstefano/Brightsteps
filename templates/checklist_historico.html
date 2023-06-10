@@ -1,0 +1,51 @@
+{% load static %}
+{% load template_filters %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-2.20.0.min.js'></script>
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/checklist.css' %}">
+
+
+</head>
+<body>
+    {{paciente.name}}
+
+
+    {{ total_score|json_script:"total_score" }}
+
+    <main>
+
+    <p>{{paciente.nome}} {{paciente.sobrenome}} - Histórico</p>
+    <button form="checklist_find{{paciente.pk}}"> Voltar à checklist </button>
+    <div class="chart__historico">
+        <div class="chart__historico__chart">
+            <div id='total_score_chart'></div>
+        </div>
+        <div class="chart__historico__select">
+            <label for="scores">Datas disponíveis</label>
+            <select name="scores" id="scores">
+                {% for score in score_list %}
+                    <option value="{{ score|get:'Score' }}">{{ score|get:'Data' }}</option>
+                {% endfor %}  
+            </select>
+        </div>
+
+    </main>
+
+    <script src="{% static 'chart_historico.js' %}"></script>
+
+    <form action="/checklist_find" method="POST" id="checklist_find{{paciente.pk}}">
+        {% csrf_token %}
+        <input type="hidden" value="{{paciente.cod_acesso}}" name="codigo">
+    </form>
+
+</body>
+</html>

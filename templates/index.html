@@ -1,0 +1,42 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/index.css' %}">
+
+  <title>Document</title>
+</head>
+<body>
+  <div class="link_acesso">
+    <a href="/login_prof"><button>Acesso profissional</button></a>
+  </div>
+  
+  <div class="main">
+    <div class="main__left">
+      <div class="logo">Brigthsteps</div>
+      <h3>Acompanhamento padrão Denver para crianças autistas</h3>
+    </div>
+    <div class="main__divide">
+    </div>
+    <div class="main__right">
+      <div class="main__right__top">
+        <h2>Conferir progresso</h2>
+        <div class="main__right__bar"></div>
+      </div>
+
+      <form action="/checklist_find" method="POST">
+        {% csrf_token %}
+        <input type="text" name="codigo" placeholder="Código da criança">
+        <br>
+        <input type="submit" value="Buscar">
+      </form>
+      
+    </div>
+  </div>
+  
+</body>
+</html>

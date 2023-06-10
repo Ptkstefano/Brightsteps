@@ -1,0 +1,81 @@
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <title>Document</title>
+</head>
+<body>
+    {% include "blocks/navbar.html" %}
+
+    {% load template_filters %}
+    
+    <div class="main">
+
+        <h1>Lista Pacientes</h1>
+
+
+            {% for paciente in pacientes %}
+
+            <form action="/checklist_find" method="POST" id="checklist_find{{paciente.pk}}">
+                {% csrf_token %}
+                <input type="hidden" value="{{paciente.cod_acesso}}" name="codigo">
+            </form>
+
+            <form action="/edit_paci" method="POST" id="edit_paci{{paciente.pk}}">
+                {% csrf_token %}
+                <input type="hidden" value="{{paciente.pk}}" name="pk">
+            </form>
+
+            <div class="main__patient__card">
+                <div id="{{paciente.pk}}" onclick="open_card('{{paciente.pk}}')" class="main__patient__card__header">
+                    <div class="main__patient__card__header__name">{{paciente.nome}} {{paciente.sobrenome}}</div>
+                    <div class="main__patient__card__header__buttons">
+                        <a href="/checklist_edit/{{paciente.pk}}"><button> Editar checklist </button></a>
+                        <button form="checklist_find{{paciente.pk}}"> Conferir checklist </button>
+                        <button form="edit_paci{{paciente.pk}}"> Editar dados </button>
+                    </div>
+                </div>
+                <div id='body{{paciente.pk}}' class="main__patient__card__body">
+                    <div class="main__patient__card__body__topgrid">
+                        <div class="main__patient__card__body__topgrid__info">
+                            <p>Data de nascimento: {{ paciente.data_nascimento }}</p>
+                            <p>CPF: {{ paciente.cpf }}</p>
+                            <p>Código de acesso: {{ paciente.cod_acesso }}</p>
+                        </div>
+                        <div class="main__patient__card__body__topgrid__parents">
+                            <p>Responsável: {{ paciente.responsavel.nome_completo }} ({{paciente.responsavel.relacao}})</p>
+                            <p>Código de acesso: {{ paciente.cod_acesso }}</p>
+                        </div>
+                    </div>
+                    <div class="main__patient__card__body__bottomgrid">
+                        <div class="main__patient__card__body__bottomgrid__info">
+                            <p>{{ paciente.endereco.cidade }} - {{ paciente.endereco.estado }}</p>
+                            <p>{{ paciente.endereco.rua }} - {{ paciente.endereco.numero }}</p>
+                            <p>{{ paciente.endereco.cep }}</p>
+                        </div>
+                        <div class="main__patient__card__body__bottomgrid__telephone">
+                            <p>E-mail: {{ paciente.responsavel.email }}</p>
+                            <p>Telefone 1: {{ paciente.responsavel.telefone1 }}</p>
+                            <p>Telefone 2: {{ paciente.responsavel.telefone2 }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+                {% endfor %}
+            
+
+
+    </div>
+
+    <script src="{% static 'main_button_div.js'%}"></script>
+
+</body>
+</html>

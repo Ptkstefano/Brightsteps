@@ -1,0 +1,14 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'styles/navbar.css' %}">
+
+<nav>
+    <div class="navbar__logo">
+        <a href="/main"><div class="navbar__logo__title">Brightsteps</div></a>
+    </div>
+    <div class="navbar__buttons">
+        <div>{{ profissional.nome }} {{ profissional.sobrenome }}
+            <a href="/main"><button>Página inicial</button></a>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,19 @@
+{% load static %}
+
+<link rel="stylesheet" href="{% static 'styles/navbar.css' %}">
+
+<nav>
+    <div class="navbar__logo">
+        <a href="/"><div class="navbar__logo__title">Brightsteps</div></a>
+    </div>
+    
+    <div class="navbar__buttons">
+        <div class="navbar__username">{{ profissional.nome }} {{ profissional.sobrenome }}</div>
+            <a href="registro_paci"><button>Registrar novo paciente</button></a>
+            <a href="logout"><button>Logout</button></a>
+                {% if profissional.admin == True %}
+            <a href="/gerencia"><button>Painel administrador</button></a>
+                {% endif %}
+        
+    </div>
+</nav>

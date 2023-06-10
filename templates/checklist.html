@@ -1,0 +1,184 @@
+{% load static %}
+{% load template_filters %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/checklist.css' %}">
+
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-2.20.0.min.js'></script>
+
+</head>
+<body>
+
+    <script src="{% static 'checklist.js'%}"></script>
+
+    <div class="checklist__header">
+
+      <div class="checklist__main__perfil">
+        <div class="checklist__main__perfil__top">
+          <p>{{paciente.nome}} {{paciente.sobrenome}}</p>
+          <p>Data de nascimento: {{paciente.data_nascimento}}</p>
+        </div>
+        <div class="checklist__main__perfil__bottom">
+          Habilidades alcançadas:
+        </div>
+      </div>
+
+      <div class="checklist__main__chart">
+
+        <div class="checklist__main__chart__chart">
+          {{ total_score|json_script:"total_score" }}
+          <div id='total_score_chart'></div>
+        </div>
+        <div class="checklist__main__chart__button">
+          <a href="/checklist/historico/{{paciente.cod_acesso}}"><button>Acessar histórico</button></a>
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+    <div class="checklist__body" id="checklist__body">
+
+    <div class="tab">
+      <button class="tablinks" onclick="openTab(event, 'nv1')">Nível 1</button>
+      <button class="tablinks" onclick="openTab(event, 'nv2')">Nível 2</button>
+      <button class="tablinks" onclick="openTab(event, 'nv3')">Nível 3</button>
+      <button class="tablinks" onclick="openTab(event, 'nv4')">Nível 4</button>
+    </div>
+
+    {% for field in checklist_fields %}
+
+    {% if field.name == ' id' or field.name == 'ID' or field.name == 'data' %}
+      
+      {% else %}
+
+
+      {% if field.name == 'nv1_cre_01' %}
+      <div id="nv1" class="tabcontent">
+        {{ nv1_score|json_script:"nv1_score" }}
+        <div class="checklist__body__chart" id='nv1_chart'></div>
+        <h1>Nível 1</h1>
+      {% endif %}
+
+      {% if field.name == 'nv2_cre_01' %}
+      <div id="nv2" class="tabcontent">
+        
+        {{ nv2_score|json_script:"nv2_score" }}
+        <div class="checklist__body__chart" id='nv2_chart'></div>
+        <h1>Nível 2</h1>
+      {% endif %}
+
+      {% if field.name == 'nv3_cre_01' %}
+      <div id="nv3" class="tabcontent">
+        {{ nv3_score|json_script:"nv3_score" }}
+        <div class="checklist__body__chart" id='nv3_chart'></div>
+        <h1>Nível 3</h1>
+      {% endif %}
+
+      {% if field.name == 'nv4_cre_01' %}
+      <div id="nv4" class="tabcontent">
+        {{ nv4_score|json_script:"nv4_score" }}
+        <div class="checklist__body__chart"  id='nv4_chart'></div>
+        <h1>Nível 4</h1>
+      {% endif %}
+
+      
+      {% if field.name == 'nv1_cre_01' or field.name == 'nv2_cre_01' or field.name == 'nv3_cre_01' or field.name == 'nv4_cre_01' %}
+        <div class="checklist__body__section">
+        <h1>Comunicação receptiva</h1>
+      {% endif %}
+
+      {% if field.name == 'nv1_cex_01' or field.name == 'nv2_cex_01' or field.name == 'nv3_cex_01' or field.name == 'nv4_cex_01' %}
+          </div>
+          <div class="checklist__body__section">
+            <h1>Comunicação expressiva</h1>
+      {% endif %}
+
+      {% if field.name == 'nv2_cac_01' %}
+        </div>
+        <div class="checklist__body__section">
+          <h1>Competências de atenção conjunta</h1>
+      {% endif %}
+
+      {% if field.name == 'nv1_cso_01' or field.name == 'nv2_cso_01' or field.name == 'nv3_cso_01' or field.name == 'nv4_cso_01' %}
+        </div>
+        <div class="checklist__body__section">
+          <h1>Competências sociais</h1>
+      {% endif %}
+
+      {% if field.name == 'nv1_imi_01' or field.name == 'nv2_imi_01' %}
+          </div>
+          <div class="checklist__body__section">
+        <h1>Imitação</h1>
+      {% endif %}
+
+      {% if field.name == 'nv1_cog_01' or field.name == 'nv2_cog_01' or field.name == 'nv3_cog_01' or field.name == 'nv4_cog_01' %}
+          </div>
+          <div class="checklist__body__section">
+        <h1>Cognição</h1>
+      {% endif %}
+
+      {% if field.name == 'nv1_jog_01' or field.name == 'nv2_jog_01' or field.name == 'nv3_jog_01' or field.name == 'nv4_jog_01' %}
+          </div>
+          <div class="checklist__body__section">
+        <h1>Jogo</h1>
+      {% endif %}
+
+      {% if field.name == 'nv1_mfi_01' or field.name == 'nv2_mfi_01' or field.name == 'nv3_mfi_01' or field.name == 'nv4_mfi_01' %}
+        </div>
+        <div class="checklist__body__section">
+          <h1>Motricidade fina</h1>
+      {% endif %}
+
+      {% if field.name == 'nv1_mgr_01' or field.name == 'nv2_mgr_01' or field.name == 'nv3_mgr_01' or field.name == 'nv4_mgr_01' %}
+        </div>
+        <div class="checklist__body__section">
+          <h1>Motricidade grossa</h1>
+      {% endif %}
+
+      {% if field.name == 'nv1_com_01' %}
+            </div>
+            <div class="checklist__body__section">
+          <h1>Comportamento</h1>
+      {% endif %}
+
+      {% if field.name == 'nv1_ipe_01' or field.name == 'nv2_ipe_01' or field.name == 'nv3_ipe_01' or field.name == 'nv4_ipe_01' %}
+            </div>
+            <div class="checklist__body__section">
+          <h1>Independência pessoal</h1>
+      {% endif %}
+
+          {% if checklist|get_attribute:field.name == 3 %}
+          <ul>{{field.verbose_name}}<br></ul>
+          {% endif %}
+
+      {% if field.name == 'nv1_ipe_18' or field.name == 'nv2_ipe_26' or field.name == 'nv3_ipe_19' or field.name == 'nv4_ipe_18' %}
+          <!-- Closure of section -->
+          </div>
+      <!-- Closure of main tab -->
+      </div>
+      
+      {% endif %}
+
+    <!-- Closure of if statement at the beginning that removes unwanted fields -->
+    {% endif %}
+
+      
+
+  {% endfor %}
+
+  </div>
+
+  <script src="{% static 'chart.js'%}"></script>
+
+</body>
+</html>

@@ -1,0 +1,221 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap');
+
+body{
+  font-family: 'Lato', sans-serif;
+  display:flex;
+  flex-direction: column;
+  align-items: stretch;
+  background-color: #BBDAED;
+}
+
+main{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+h1{
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom:5vh;
+}
+
+h2{
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+
+}
+
+.total_score_chart{
+
+}
+
+.checklist__header{
+    display: grid;
+    grid-template-columns: 50% 50%;
+    margin: 2vh 7vw 0 7vw;
+    border: dashed 2px black;
+    border-radius: 5px;
+    border-bottom: none;
+}
+
+.checklist__main__perfil{
+    display: flex;
+    padding: 1vw;
+    font-size: 24px;
+    font-weight: 600;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.checklist__main__chart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.checklist__main__chart button{
+  margin: 5px 0;
+  background-color: #155479; 
+  padding: 10px 10px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border-radius: 15px;
+  color: #f5f5f7;
+  border-style: solid;
+  border-color: #f5f5f7;
+  text-shadow: 1px 1px #2d2d2d;
+    
+}
+
+.checklist__main__chart button:hover{
+  background-color: #327ca7; 
+  cursor: pointer;
+}
+
+.checklist__body__chart{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Style the tab */
+
+
+  .tab {
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  /* Style the buttons that are used to open the tab content */
+  .tab button {
+    background-color: #ddd;
+    cursor: pointer;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 14px 16px;
+    width: 100%;
+    border-inline-width: 1px;
+    overflow: hidden;
+    border-top:none;
+  }
+  
+  .tab button:hover {
+    background-color: #f1f1f1;
+    border-style: dashed;
+    border-top:none;
+  }
+  
+  .tab button.active {
+    background-color: #f1f1f1;
+    border-style: dashed;
+    border-top:none;
+  }
+  
+  /* Style the tab content */
+  .tabcontent {
+    display: none;
+    padding: 6px 12px;
+    border-top: none;
+  }
+
+  .checklist_form_main_div{
+    width: 70vw;
+    border: solid;
+    border-radius: 20px;
+    border-width: 3px;
+  }
+
+  .level__title{
+    margin:15px 0;
+  }
+
+  hr {
+    border-top: 3px dashed black;
+    margin:10px 0;
+  }
+
+  .form__element{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form__title{
+    margin: 10px 0;
+  }
+  .form__list{
+    margin: 10px 0px;
+    font-size:20px;
+    display: flex;
+    flex-direction: row;
+  }
+  .form__desc{
+    font-size:20px;
+  }
+
+  .checklist__body{
+    background-color: #9ce5ff;
+    border: 3px solid #000000ad;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 7vw;
+  }
+
+  .checklist__body__section{
+    border: 2px dashed #ffffff87;
+    background-color: #ffffff42;
+    border-radius: 10px;
+    margin: 4% 5%;
+    padding: 2% 3%;
+    font-size: 18px;
+  }
+
+  .checklist__body__section ul{
+    margin:8px;
+  }
+
+  .checklist__body__section ul:before{
+    content:"•";
+    margin-right:5px;
+  }
+
+  .chart__historico{
+    display: grid;
+    grid-template-columns: 75% 25%;
+    align-items: end;
+  }
+
+  .chart__historico__chart{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  main button{
+    margin: 15px 0;
+    background-color: #155479; 
+    padding: 6px 10px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border-radius: 15px;
+    color: #f5f5f7;
+    border-style: solid;
+    border-color: #f5f5f7;
+    text-shadow: 1px 1px #2d2d2d;
+  }
+
+  main button:hover{
+    background-color: #327ca7; 
+    cursor: pointer;
+  }
+
+
+  

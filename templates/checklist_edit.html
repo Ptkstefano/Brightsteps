@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+{% load template_filters %}
+{% load static %}
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+  <link rel="stylesheet" href="{% static 'styles/checklist_edit.css' %}">
+
+</head>
+<body>
+
+
+  {% include "blocks/navbar_sub.html" %}
+
+  <main>
+
+    <script src="{% static 'checklist_edit.js'%}"></script>
+
+    <br>
+
+    {{ paciente.nome }}
+
+    <br>
+
+    <div class="checklist_form_main_div">
+
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'nv1')">Nível 1</button>
+        <button class="tablinks" onclick="openTab(event, 'nv2')">Nível 2</button>
+        <button class="tablinks" onclick="openTab(event, 'nv3')">Nível 3</button>
+        <button class="tablinks" onclick="openTab(event, 'nv4')">Nível 4</button>
+      </div>
+
+
+      <form method="post" action ="/checklist_edit/{{paciente.pk}}">
+
+        {% csrf_token %}
+
+
+
+        <input type="hidden" name="paciente" value="{{paciente.pk}}">
+
+        {% for form in checklist_form %}
+
+          {% if form.name == 'nv1_cre_01' %}
+          <div id="nv1" class="tabcontent" style="display: block;">
+            <div class="level__title"><h1>Nível 1</h1></div>
+
+          {% endif %}
+
+          {% if form.name == 'nv2_cre_01' %}
+          <div id="nv2" class="tabcontent">
+            <div class="level__title"><h1>Nível 2</h1></div>
+
+
+          {% endif %}
+
+          {% if form.name == 'nv3_cre_01' %}
+          <div id="nv3" class="tabcontent">
+            <div class="level__title"><h1>Nível 3</h1></div>
+
+          {% endif %}
+
+          {% if form.name == 'nv4_cre_01' %}
+          <div id="nv4" class="tabcontent">
+            <div class="level__title"><h1>Nível 4</h1></div>
+
+          {% endif %}
+
+
+
+          {% if form.name == 'nv1_cre_01' or form.name == 'nv2_cre_01' or form.name == 'nv3_cre_01' or form.name == 'nv4_cre_01' %}
+
+          <div class="subtab">
+            <div class="subtab__subtab">
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'cre')">Comunicação receptiva</button>
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'cex')">Comunicação expressiva</button>
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'cso')">Competências sociais</button>
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'cac')">Comportamentos de ação conjunta</button>
+            </div>
+            <br>
+            <div class="subtab__subtab">
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'imi')">Imitação</button>
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'cog')">Cognição</button>
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'jog')">Jogo</button>
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'mfi')">Motricidade fina</button>
+            </div>
+            <br>
+            <div class="subtab__subtab">
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'mgr')">Motricidade grossa</button>
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'com')">Comportamento</button>
+              <button type="button" class="subtablinks" onclick="openSubTab(event, 'ipe')">Independência pessoal</button>
+            </div>
+          </div>
+
+          <div class="subtab__submit">
+            <input name = 'submit' type="submit" value="{{ mensagem }}">
+          </div>
+
+
+
+              <div id="cre" name="cre" class="subtabcontent">
+                <h1>Comunicação receptiva</h1>
+                <hr>
+          {% endif %}
+
+          {% if form.name == 'nv1_cex_01' or form.name == 'nv2_cex_01' or form.name == 'nv3_cex_01' or form.name == 'nv4_cex_01' %}
+              </div>
+              <div id="cex" name="cex" class="subtabcontent" style="display: block;">
+                <h1>Comunicação expressiva</h1>
+                <hr>
+          {% endif %}
+
+          {% if form.name == 'nv1_cso_01' or form.name == 'nv2_cso_01' or form.name == 'nv3_cso_01' or form.name == 'nv4_cso_01' %}
+              </div>
+              <div id="cso" name="cso" class="subtabcontent">
+                <h1>Competências sociais</h1>
+                <hr>
+          {% endif %}
+
+          {% if form.name == 'nv2_cac_01' %}
+            </div>
+            <div id="cac" name="cac" class="subtabcontent">
+            <h1>Competências de ação conjunta</h1>
+            <hr>
+          {% endif %}
+
+          {% if form.name == 'nv1_imi_01' or form.name == 'nv2_imi_01' %}
+              </div>
+              <div id="imi" name="imi" class="subtabcontent">
+                <h1>Imitação</h1>
+                <hr>
+          {% endif %}
+
+          {% if form.name == 'nv1_cog_01' or form.name == 'nv2_cog_01' or form.name == 'nv3_cog_01' or form.name == 'nv4_cog_01' %}
+              </div>
+              <div id="cog" name="cog" class="subtabcontent">
+                <h1>Cognição</h1>
+                <hr>
+          {% endif %}
+
+          {% if form.name == 'nv1_jog_01' or form.name == 'nv2_jog_01' or form.name == 'nv3_jog_01' or form.name == 'nv4_jog_01' %}
+              </div>
+              <div id="jog" name="jog" class="subtabcontent">
+                <h1>Jogo</h1>
+                <hr>
+          {% endif %}
+
+          {% if form.name == 'nv1_mfi_01' or form.name == 'nv2_mfi_01' or form.name == 'nv3_mfi_01' or form.name == 'nv4_mfi_01' %}
+              </div>
+              <div id="mfi" name="mfi" class="subtabcontent">
+                <h1>Motricidade fina</h1>
+                <hr>
+          {% endif %}
+
+          {% if form.name == 'nv1_mgr_01' or form.name == 'nv2_mgr_01' or form.name == 'nv3_mgr_01' or form.name == 'nv4_mgr_01' %}
+              </div>
+              <div id="mgr" name="mgr" class="subtabcontent">
+                <h1>Motricidade grossa</h1>
+                <hr>
+          {% endif %}
+
+          {% if form.name == 'nv1_com_01' %}
+              </div>
+              <div id="com" name="com" class="subtabcontent">
+                <h1>Comportamento</h1>
+                <hr>
+          {% endif %}
+
+          {% if form.name == 'nv1_ipe_01' or form.name == 'nv2_ipe_01' or form.name == 'nv3_ipe_01' or form.name == 'nv4_ipe_01' %}
+              </div>
+              <div id="ipe" name="ipe" class="subtabcontent">
+                <h1>Independência pessoal</h1>
+              <hr>
+          {% endif %}
+
+
+
+          {% if form.name != 'paciente' %}
+            <div class="form__element">
+                <div class="form__title">
+                  
+                  <h2>{{ form.name|get_number }} - {{form.label }}</h2>
+                </div>
+
+                <div class="form__list">
+                  {{ form }}
+                </div>
+
+                {% with description=descriptions|get:form.name %}
+                <div class="form__desc">
+                  {{ description }}
+                </div>
+                {% endwith %}
+                <br>
+            </div>
+                <hr>
+          {% endif %}
+          
+          {% if form.name == 'nv1_ipe_18' or form.name == 'nv2_ipe_26' or form.name == 'nv3_ipe_19' or form.name == 'nv4_ipe_18' %}
+          <!-- Closure of last sub tab -->
+          </div>
+
+          <div class="subtab__submit">
+            <input name = 'submit' type="submit" value="{{ mensagem }}">
+          </div>
+          
+          <!-- Closure of main tab -->
+          </div>
+          {% endif %}
+
+        {% endfor %}
+
+
+
+      </form>
+
+    </div>
+  </main>
+</body>
+</html>
