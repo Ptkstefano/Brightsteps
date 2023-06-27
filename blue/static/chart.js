@@ -1,5 +1,5 @@
 // CHART TOTAL
-const empty=[]
+let empty=[]
 
 const total_scoreObject = JSON.parse(document.getElementById('total_score').textContent);
 const total_values = Object.values(total_scoreObject)
@@ -54,7 +54,7 @@ total_data = [total_trace_main, total_trace_secondary]
     autosize:false,
   }
   
-  Plotly.newPlot("total_score_chart", total_data, layout_total)
+  Plotly.newPlot("total_score_chart-desktop", total_data, layout_total)
 
 //////////////////
 
@@ -113,7 +113,7 @@ var nv1_trace_secondary = {
 
 data_nv1 = [nv1_trace_main, nv1_trace_secondary]
   
-  Plotly.newPlot("nv1_chart", data_nv1, layout)
+  Plotly.newPlot("nv1_chart-desktop", data_nv1, layout)
 
   // CHART 2
   
@@ -153,12 +153,12 @@ var nv2_trace_secondary = {
 data_nv2 = [nv2_trace_main, nv2_trace_secondary]
   
   
-  Plotly.newPlot("nv2_chart", data_nv2, layout)
+  Plotly.newPlot("nv2_chart-desktop", data_nv2, layout)
 
     // CHART 3
 
 const nv3_scoreObject = JSON.parse(document.getElementById('nv3_score').textContent);
-const nv3_values = Object.values(nv2_scoreObject)
+const nv3_values = Object.values(nv3_scoreObject)
 const nv3_parameters = [
   'Comunicação receptiva',
   'Comunicação expressiva',
@@ -191,12 +191,12 @@ var nv3_trace_secondary = {
 
 data_nv3 = [nv3_trace_main, nv3_trace_secondary]
   
-  Plotly.newPlot("nv3_chart", data_nv3, layout)
+  Plotly.newPlot("nv3_chart-desktop", data_nv3, layout)
 
 // CHART 4
 
 const nv4_scoreObject = JSON.parse(document.getElementById('nv4_score').textContent);
-const nv4_values = Object.values(nv2_scoreObject)
+const nv4_values = Object.values(nv4_scoreObject)
 const nv4_parameters = [
   'Comunicação receptiva',
   'Comunicação expressiva',
@@ -229,4 +229,4 @@ var nv4_trace_secondary = {
 
 data_nv4 = [nv4_trace_main, nv4_trace_secondary]
   
-  Plotly.newPlot("nv4_chart", data_nv4, layout)
+  Plotly.newPlot("nv4_chart-desktop", data_nv4, layout)

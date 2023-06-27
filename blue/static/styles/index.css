@@ -1,6 +1,7 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;500;600;700&display=swap');
 
+
 h1{
     font-size: 50px;
     font-weight: 700;
@@ -9,6 +10,7 @@ h1{
 h2{
     font-size: 36px;
     font-weight: 700;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.448);
 }
 
 h3{
@@ -16,25 +18,38 @@ h3{
     margin: 10px;
     font-weight: 400;
     text-align: center;
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.448);
 }
 
 .logo{
     color:#ffffff;
     font-size: 50px;
     font-weight: 700;
-    text-shadow: 5px 5px #2d2d2d63;
+    text-shadow: 1px 1px 1px black;
+
 }
 
 body{
-    background-color: #155479;
+    background-color: hsla(202, 89%, 24%, 1);
     font-family: Lato;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
 }
 
 .link_acesso{
-    display: flex;
-    justify-content: flex-end;
-    margin: 5px 5px;
+    margin: 5px 15px;
+    align-self: flex-end;
 }
+
+a{
+    text-decoration: underline;
+    color:white;
+    font-size: 24px;
+    text-align: right;
+}
+
 
 .link_acesso button{
     background-color: #68bbff; 
@@ -47,7 +62,7 @@ body{
     border-radius: 15px;
     border-style: solid;
     border-color: #000000;
-    text-shadow: 1px 1px #2d2d2d;   
+  
 }
 
 .link_acesso button:hover {
@@ -56,15 +71,18 @@ body{
 }
 
 .main{
-    margin: 0px 30px 30px 30px;
-    background-color: #68bbff;
-    height: 80vh;
+    margin-top: 10vh;
+    background-color: hsla(207, 100%, 58%, 1);
+    height: 70vh;
     display: grid;
-    grid-template-columns: 39% 2% 59%;
+    grid-template-columns: 33% 2% 65%;
     border-radius: 15px;
     color: #ffffff;
-    box-shadow: 5px 5px #2d2d2d9c;
     overflow: hidden;
+    width: 70%;
+    box-shadow: 8px 8px 16px rgba(0, 0, 0, 0.471);
+    justify-self: flex-start;
+    
 }
 
 .main__left{
@@ -72,7 +90,6 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    text-shadow: 2px 2px #2d2d2d8d;
     
 }
 
@@ -82,11 +99,10 @@ body{
 }
 
 .main__divide{
-    background-color: #94d3ff;
+    background-color: hsla(210, 100%, 74%, 1);
     border: none;
     border-right: 5px dashed #f5f5f7;
     border-left: 5px solid #f5f5f7;
-
 }
 
 .main__right{
@@ -95,8 +111,7 @@ body{
     align-items: center;
     flex-direction: column;
     color: #f5f5f7;
-    background-color: #94d3ff;
-    text-shadow: 2px 2px #2d2d2d8d;
+    background-color: hsla(210, 100%, 74%, 1);
 
 }
 
@@ -182,3 +197,63 @@ label{
     color:#ffffff;
     text-shadow: 2px 2px #2d2d2d9c;
   }
+
+
+@media only screen and (max-width: 1280px) {
+
+    body{
+        font-family: Lato;
+        display: block; 
+        flex-direction: column; 
+        align-items: center; 
+        height: 100vh;
+    }
+
+    .main{
+        margin: 0 0;
+        display: flex;
+        flex-direction: column;
+        height: fit-content;
+        width: 100%;
+        border-radius: 0;
+    }
+
+    .main__left{
+        height: 80vh;
+        margin: 0 5vw;
+    }
+
+    .main__right{
+        height: 80vh;
+        display: grid;
+        grid-template-rows: 30% 60%;
+        flex-direction: column;
+        color: #f5f5f7;
+        background-color: hsla(210, 100%, 74%, 1);
+        justify-content: center;
+        align-items: center;
+        justify-items: center;
+        align-content: space-evenly;
+    }
+
+    .main__divide{
+        background-color: hsla(210, 100%, 74%, 1);
+        padding: 5px 0;
+        border: none;
+        border-top: 5px dashed #f5f5f7;
+        border-bottom: 5px solid #f5f5f7;
+    }
+    .link_acesso{
+        display: none;
+    }
+
+    input[type=text]{
+        margin: 0 0 20vh 0;
+        height: 40px;
+
+    }
+
+    input[type=submit]{
+        padding: 16px 70%;
+    }
+}

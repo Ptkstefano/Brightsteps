@@ -32,9 +32,13 @@
 
       <div class="checklist__main__chart">
 
-        <div class="checklist__main__chart__chart">
+        <div class="checklist__main__chart__chart-desktop">
           {{ total_score|json_script:"total_score" }}
-          <div id='total_score_chart'></div>
+          <div id='total_score_chart-desktop'></div>
+        </div>
+        <div class="checklist__main__chart__chart-mobile">
+          {{ total_score|json_script:"total_score_mobile" }}
+          <div id='total_score_chart-mobile'></div>
         </div>
         <div class="checklist__main__chart__button">
           <a href="/checklist/historico/{{paciente.cod_acesso}}"><button>Acessar histórico</button></a>
@@ -65,7 +69,9 @@
       {% if field.name == 'nv1_cre_01' %}
       <div id="nv1" class="tabcontent">
         {{ nv1_score|json_script:"nv1_score" }}
-        <div class="checklist__body__chart" id='nv1_chart'></div>
+        {{ nv1_score|json_script:"nv1_score_mobile" }}
+        <div class="checklist__body__chart-desktop" id='nv1_chart-desktop'></div>
+        <div class="checklist__body__chart-mobile" id='nv1_chart-mobile'></div>
         <h1>Nível 1</h1>
       {% endif %}
 
@@ -73,21 +79,27 @@
       <div id="nv2" class="tabcontent">
         
         {{ nv2_score|json_script:"nv2_score" }}
-        <div class="checklist__body__chart" id='nv2_chart'></div>
+        {{ nv2_score|json_script:"nv2_score_mobile" }}
+        <div class="checklist__body__chart-desktop" id='nv2_chart-desktop'></div>
+        <div class="checklist__body__chart-mobile" id='nv2_chart-mobile'></div>
         <h1>Nível 2</h1>
       {% endif %}
 
       {% if field.name == 'nv3_cre_01' %}
       <div id="nv3" class="tabcontent">
         {{ nv3_score|json_script:"nv3_score" }}
-        <div class="checklist__body__chart" id='nv3_chart'></div>
+        {{ nv3_score|json_script:"nv3_score_mobile" }}
+        <div class="checklist__body__chart-desktop" id='nv3_chart-desktop'></div>
+        <div class="checklist__body__chart-mobile" id='nv3_chart-mobile'></div>
         <h1>Nível 3</h1>
       {% endif %}
 
       {% if field.name == 'nv4_cre_01' %}
       <div id="nv4" class="tabcontent">
         {{ nv4_score|json_script:"nv4_score" }}
-        <div class="checklist__body__chart"  id='nv4_chart'></div>
+        {{ nv4_score|json_script:"nv4_score_mobile" }}
+        <div class="checklist__body__chart-desktop"  id='nv4_chart-desktop'></div>
+        <div class="checklist__body__chart-mobile"  id='nv4_chart-mobile'></div>
         <h1>Nível 4</h1>
       {% endif %}
 
@@ -179,6 +191,7 @@
   </div>
 
   <script src="{% static 'chart.js'%}"></script>
-
+  <script src="{% static 'chart-mobile.js'%}"></script>
+  
 </body>
 </html>

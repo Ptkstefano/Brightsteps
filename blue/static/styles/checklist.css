@@ -50,11 +50,22 @@ h2{
     justify-content: space-between;
 }
 
-.checklist__main__chart{
+.checklist__main__chart-desktop{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+
+.checklist__main__chart__chart-desktop{
+  display: flex;
+}
+
+
+.checklist__main__chart__chart-mobile{
+  display: none;
+  overflow: hidden;
 }
 
 .checklist__main__chart button{
@@ -77,11 +88,16 @@ h2{
   cursor: pointer;
 }
 
-.checklist__body__chart{
+.checklist__body__chart-desktop{
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
+.checklist__body__chart-mobile{
+  display:none;
+}
+
 
 /* Style the tab */
 
@@ -217,5 +233,70 @@ h2{
     cursor: pointer;
   }
 
+  @media only screen and (max-width: 1280px) {
 
+    .checklist__header{
+      display: grid;
+      grid-template-columns: 100%;
+      grid-template-rows: 20% 80%;
+      margin: 2vh 7vw 0 7vw;
+      border: dashed 2px black;
+      border-radius: 5px;
+      border-bottom: none;
+      
+  }
+
+  .checklist__main__perfil{
+    font-weight: 400;
+    font-size:20px;
+    margin: 10px 0;
+  }
+
+  .checklist__body__chart-desktop{
+    display:none;
+  }
+
+  .checklist__body__chart-mobile{
+    display:flex;
+  }
+
+  .checklist__main__chart{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .checklist__main__chart__chart-desktop{
+    display:none;
+  }
+
+  .checklist__main__chart__chart-mobile{
+    display: flex;
+    overflow: hidden;
+    height: 40vh;
+  }
+
+  .total_score_chart-mobile{
+    display:flex;
+    overflow: hidden;
+    height: 40vh;
+  }
+
+  .checklist__body__chart-mobile{
+    display:flex;
+    overflow: hidden;
+    height: 30vh;
+  }
+  
+
+  .checklist__body{
+    margin: 0 1vw;
+  }
+
+  .checklist__header{
+    margin: 1vw;
+  }
+
+  }
   
