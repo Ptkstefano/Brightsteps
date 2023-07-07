@@ -104,8 +104,10 @@ def registro_paci(request):
         paciente.save()
         paciente.profissional.add(profissional_logado)
         checklist.save()
-
-    return render(request, 'registro_paci.html', {'form_paci': blue.forms.form_registro_paciente, 'form_resp': blue.forms.form_registro_responsavel, 'form_end': blue.forms.form_registro_endereco, 'resp_formset': blue.forms.form_registro_responsavel})
+    
+        return redirect(main)
+    else:
+        return render(request, 'registro_paci.html', {'form_paci': blue.forms.form_registro_paciente, 'form_resp': blue.forms.form_registro_responsavel, 'form_end': blue.forms.form_registro_endereco, 'resp_formset': blue.forms.form_registro_responsavel})
 
 def edit_profi(request):
     if request.method!='POST':
