@@ -11,9 +11,9 @@
         <div class="navbar__username">{{ profissional.nome }} {{ profissional.sobrenome }}</div>
             <a href="registro_paci"><button>Registrar novo paciente</button></a>
             <a href="logout"><button>Logout</button></a>
+            <a href="/mudarsenha"><button>Mudar senha</button></a>
                 {% if profissional.admin == True %}
             <a href="/gerencia"><button>Painel administrador</button></a>
                 {% endif %}
-        
     </div>
 </nav>

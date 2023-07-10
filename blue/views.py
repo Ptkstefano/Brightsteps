@@ -318,6 +318,24 @@ def change(request):
     
     return redirect(gerencia)
 
+def mudar_senha(request):
+    if request.method=='GET':
+        return render(request, "mudarsenha.html")
+    if request.method=='POST':
+        senha_atual = request.POST.get('senha_atual')
+        senha_1 = request.POST.get('nova_senha_1')
+        senha_2 = request.POST.get('nova_senha_2')
+
+        user = request.user
+
+        if user.check_password(senha_atual) and senha_1 == senha_2:
+            user.set_password(senha_1)
+            user.save()
+        else:
+            return redirect(mudar_senha)
+
+        return redirect(main)
+
 @login_required(login_url='/login_prof')
 def add(request):
 

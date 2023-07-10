@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/form.css' %}">
+</head>
+<body>
+
+    {% include "blocks/navbar_sub.html" %}
+
+    <div class="form__main">
+
+        <h1>Mudar senha</h1>
+
+    <form action="/mudarsenha" method="POST">
+        {% csrf_token %}
+
+        <div class="form__main__section">
+
+            <div class="form__main__subsection">
+
+                <div class="form__main__item">
+                    <label for="senha_atual">Senha atual:</label>
+                    <input type="password" name="senha_atual" maxlength="50" required id="senha_atual">
+                </div>
+
+                <div class="form__main__item">
+                    <label for="nova_senha_1">Nova senha:</label>
+                    <input type="password" name="nova_senha_1" maxlength="50" required id="nova_senha_1">
+                </div>
+
+                <div class="form__main__item">
+                    <label for="nova_senha_2">Confirme a nova senha:</label>
+                    <input type="password" name="nova_senha_2" required id="nova_senha_2">
+                </div>
+
+            </div>
+
+        </div>
+
+            <input type="submit">
+            
+        </div>
+
+
+
+    </form>
+
+    </div>
+
+</body>
+</html>
