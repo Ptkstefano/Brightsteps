@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Patrick\Desktop\brightsteps\aut-railway\env"
+VIRTUAL_ENV="C:\Users\85594\Documents\bs\aut-railway\env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

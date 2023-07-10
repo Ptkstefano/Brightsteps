@@ -18,6 +18,8 @@
     <a href='/backup'><button>Backup DB</button></a>
     <br>
 
+    
+
     <div class="panel__main">
 
             <h1>Pacientes</h1>
@@ -176,11 +178,19 @@
                 </table>
                 <div>
                     <button form="edit_profi{{profissional.pk}}"> Editar dados </button>
-                    {% if profissional.active == True %}
-                        <a href="/gerencia/change?model=profissional&pk={{profissional.pk}}"><button>Desativar</button></a>
-                    {% else %}
-                        <a href="/gerencia/change?model=profissional&pk={{profissional.pk}}"><button>Ativar</button></a>
-                    {% endif %}  
+                    {% if profissional.id != user.profissional.id %}
+                        {% if profissional.active == True %}
+                            <a href="/gerencia/change?model=profissional&pk={{profissional.pk}}"><button>Desativar</button></a>
+                        {% else %}
+                            <a href="/gerencia/change?model=profissional&pk={{profissional.pk}}"><button>Ativar</button></a>
+                        {% endif %}  
+                    
+                    {%else%}
+
+                        <b>Usuário atual</b>
+
+                    {% endif %}
+                    
                 </div>
             </div>
         </div>
