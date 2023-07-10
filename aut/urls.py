@@ -37,4 +37,5 @@ urlpatterns = [
     path('gerencia/add', views.add),
     path('gerencia/remove', views.remove),
     path('admin/admin', admin.site.urls),
+    path('backup', views.backup)
 ]

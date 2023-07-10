@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, FileResponse
 import blue.forms
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
@@ -11,6 +11,9 @@ from blue.templatetags import template_filters
 import random
 from django.forms import modelform_factory
 from django.db.models import Q
+import os
+from pathlib import Path
+BASE_DIR = Path(__file__).resolve().parent.parent
 
 def index(request):
     print(timezone.localdate())
@@ -334,3 +337,13 @@ def checklist_find(request):
         return redirect(checklist, paciente_cod=paciente.cod_acesso)
     else:
         return redirect(index)
+
+@login_required(login_url='/login_prof')
+def backup(request):
+    profissional_logado = get_object_or_404(Profissional, user=request.user)
+    if profissional_logado.admin == False:
+        return redirect(main)
+    else:
+        file_path = os.path.join(BASE_DIR, 'db.sqlite3')
+        response = FileResponse(open(file_path, 'rb'))
+        return response
