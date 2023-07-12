@@ -18,6 +18,7 @@ from django.urls import path, include
 from blue import views
 
 urlpatterns = [
+    path("__reload__/", include("django_browser_reload.urls")),
     path('', views.index),
     path('login_prof', views.login_prof),
     path('registro_prof', views.registro_prof),
