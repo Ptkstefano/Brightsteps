@@ -10,34 +10,34 @@
   <title>Document</title>
   {% tailwind_css %}
 </head>
-<body class='bg-sky-600 h-screen'>
+<body class='n'>
   
-  <header class="bg-sky-300 w-full h-14 absolute">
-    <div>
-      <a href="/login_prof">Acesso profissional
-        <button class>
+  <header class="bg-sky-300 w-full h-14 absolute sm:flex items-center align-middle justify-end hidden">
 
+      <a href="/login_prof">
+        <button class='p-2 px-4 mr-4 bg-sky-200 rounded-full font-montserrat border-sky-900 border-2 hover:bg-yellow-100'>
+          Acesso profissional
         </button>
       </a>
-    </div>
+
   </header>
 
-  <main class="bg-sky-600 flex flex-col items-center justify-between align-middle overflow-hidden h-screen pt-14 sm:pt-36">
-    <img class="w-full sm:w-1/3 pt-4" src="{% static 'images/logo.svg' %}">
+  <main class="bg-gradient-to-t from-sky-500 to-sky-600 h-scree flex flex-col items-center justify-between align-middle overflow-hidden h-screen pt-14 sm:pt-36">
+    <img class="w-full px-4 sm:w-1/3 pt-4" src="{% static 'images/logo2.svg' %}">
      <!--<div class="font-apricots text-9xl text-sky-300 p-8">Brightsteps</div> -->
 
-      <div class="bg-sky-300 w-96 flex flex-col justify-center align-middle rounded-3xl shadow-md">
-        <div class="font-montserrat text-3xl text-center text-sky-600 p-8">
+      <div class="bg-sky-300 sm:w-1/4 w-3/4 flex flex-col justify-center align-middle items-center rounded-3xl shadow-md">
+        <div class="font-montserrat text-3xl text-center text-sky-800 p-2 my-4 font-bold">
           Código da criança
         </div>
-        <form class="flex flex-col px-16" action="/checklist_find" method="POST">
+        <form name='busca' class="flex flex-col w-full items-center align-middle justify-center" action="/checklist_find" method="POST">
           {% csrf_token %}
-          <input type="text" class="p-2 mb-8 rounded-full w-full" name="codigo">
-          <button class="mb-8 p-2 bg-sky-600 rounded-full">Buscar</button>
+          <input type="text" class="mb-8 w-2/3 rounded-full w-full" name="codigo">
         </form>
+        <button type='submit' form='busca' class="mb-8 border-sky-900 border-2 py-2 w-2/3 bg-sky-200 rounded-full shadow-md hover:shadow-lg hover:bg-yellow-100 ">Buscar</button>
       </div>
 
-      <p class="font-montserrat text-3xl w-96 text-yellow-400 text-center p-8">Acompanhamento padrão Denver para crianças no espectro autista</p>
+      <p class="font-montserrat text-3xl w-96 text-yellow-300 text-center p-4" >Acompanhamento padrão Denver para crianças no espectro autista</p>
 
       <img class="w-full sm:w-1/3 " src="{% static 'images/kids.svg' %}">
       
