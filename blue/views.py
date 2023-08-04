@@ -2,21 +2,22 @@ from django.shortcuts import get_object_or_404, render, redirect
 from django.http import HttpResponse, FileResponse
 import blue.forms
 from django.contrib.auth.decorators import login_required
-from django.contrib import auth
+from django.contrib import auth, messages
 from blue.models import Profissional, Endereco, Responsavel, Paciente, Checklist
 from django.contrib.auth.models import User
 from django.utils import timezone
 from blue import helpers
 from blue.templatetags import template_filters
+from django.contrib import messages
 import random
 from django.forms import modelform_factory
 from django.db.models import Q
 import os
 from pathlib import Path
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 def index(request):
-    print(timezone.localdate())
     return render(request, 'index.html')
 
 def login_prof(request):
@@ -211,8 +212,15 @@ def registro_prof(request):
         
     return render(request, "registro_prof.html", {'form_profi': blue.forms.form_registro_profissional, 'form_end': blue.forms.form_registro_endereco})
 
-def checklist(request, paciente_cod):
-    paciente = get_object_or_404(Paciente, cod_acesso = paciente_cod)
+def checklist(request):
+
+    patient_code = request.GET.get('p')
+    try:
+        paciente = Paciente.objects.get(cod_acesso = patient_code)
+    except:
+        messages.error(request, 'Paciente não encontrado')
+        return redirect(index)
+
     checklist = Checklist.objects.filter(paciente=paciente.pk).latest('data')
     checklist_fields = checklist._meta.get_fields()
     checklist_fields_copy = list(checklist_fields)
@@ -348,20 +356,10 @@ def add(request):
     paciente.profissional.add(profissional)
     
     return redirect(gerencia)
-
-def checklist_find(request):
-    paciente = Paciente.objects.get(cod_acesso=request.POST.get('codigo'))
-    if paciente != None:
-        return redirect(checklist, paciente_cod=paciente.cod_acesso)
-    else:
-        return redirect(index)
-
+    
+#Testar se funciona só com o login de usuário sem profissional
 @login_required(login_url='/login_prof')
 def backup(request):
-    profissional_logado = get_object_or_404(Profissional, user=request.user)
-    if profissional_logado.admin == False:
-        return redirect(main)
-    else:
-        file_path = os.path.join(BASE_DIR, 'db.sqlite3')
-        response = FileResponse(open(file_path, 'rb'))
-        return response
+    file_path = os.path.join(BASE_DIR, 'db.sqlite3')
+    response = FileResponse(open(file_path, 'rb'))
+    return response

@@ -42,7 +42,7 @@ class Responsavel(models.Model):
     email = models.EmailField()
 
     def __str__(self):
-        return str(self.nome)
+        return str(self.nome_completo)
 
 
 

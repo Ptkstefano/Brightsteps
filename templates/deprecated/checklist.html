@@ -1,6 +1,5 @@
 {% load static %}
 {% load template_filters %}
-{% load static tailwind_tags %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,42 +7,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'styles/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'styles/checklist.css' %}">
 
-    <!-- Load plotly.js into the DOM 
-    <script src='https://cdn.plot.ly/plotly-2.20.0.min.js'></script>-->
-    {% tailwind_css %}
+    <!-- Load plotly.js into the DOM -->
+    <script src='https://cdn.plot.ly/plotly-2.20.0.min.js'></script>
+
 </head>
 <body>
 
-<main class="bg-gradient-to-t from-sky-500 to-sky-600 h-scree flex flex-col items-center justify-between align-middle overflow-hidden h-screen">
-
-  <header class="bg-sky-300 w-full h-14  items-center align-middle justify-center hidden sm:flex shadow-md">
-    <img class="w-full px-4 sm:h-full pt-4" src="{% static 'images/logo2.svg' %}">
-  </header>
-
-
-
     <script src="{% static 'checklist.js'%}"></script>
 
-    <div>
+    <div class="checklist__header">
 
-      <div>
+      <div class="checklist__main__perfil">
+        <div class="checklist__main__perfil__top">
           <p>{{paciente.nome}} {{paciente.sobrenome}}</p>
           <p>Data de nascimento: {{paciente.data_nascimento}}</p>
-          <p>Idade: #</p>
+        </div>
+        <div class="checklist__main__perfil__bottom">
+          Habilidades alcançadas:
+        </div>
       </div>
 
-      <div>
+      <div class="checklist__main__chart">
 
-        <div>
+        <div class="checklist__main__chart__chart-desktop">
           {{ total_score|json_script:"total_score" }}
-          <div></div>
+          <div id='total_score_chart-desktop'></div>
         </div>
-        <div>
+        <div class="checklist__main__chart__chart-mobile">
           {{ total_score|json_script:"total_score_mobile" }}
           <div id='total_score_chart-mobile'></div>
         </div>
-        <div>
+        <div class="checklist__main__chart__button">
           <a href="/checklist/historico/{{paciente.cod_acesso}}"><button>Acessar histórico</button></a>
         </div>
 
@@ -53,7 +50,7 @@
     </div>
 
 
-    <div id="checklist__body">
+    <div class="checklist__body" id="checklist__body">
 
     <div class="tab">
       <button class="tablinks" onclick="openTab(event, 'nv1')">Nível 1</button>
@@ -187,12 +184,11 @@
     <!-- Closure of if statement at the beginning that removes unwanted fields -->
     {% endif %}
 
+      
 
   {% endfor %}
 
   </div>
-
-</main>
 
   <script src="{% static 'chart.js'%}"></script>
   <script src="{% static 'chart-mobile.js'%}"></script>
