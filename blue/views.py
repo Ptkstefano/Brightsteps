@@ -1,5 +1,5 @@
 from django.shortcuts import get_object_or_404, render, redirect
-from django.http import HttpResponse, FileResponse
+from django.http import HttpResponse, FileResponse, JsonResponse
 import blue.forms
 from django.contrib.auth.decorators import login_required
 from django.contrib import auth
@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from blue import helpers
 from blue.templatetags import template_filters
+from datetime import datetime, date
 import random
 from django.forms import modelform_factory
 from django.db.models import Q
@@ -269,6 +270,24 @@ def checklist_edit(request, paciente_id):
         form=blue.forms.form_checklist(instance=checklist)
 
     return render(request, "checklist_edit.html", {'checklist_form': form, 'descriptions': blue.forms.description_dict, 'paciente': paciente_model, 'mensagem': mensagem})
+
+def checklist_ajax(request):
+    
+    if request.method == 'POST': 
+        id = request.POST.get('id') 
+        name = request.POST.get('name')
+        value = request.POST.get('value')
+
+        checklist = Checklist.objects.filter(paciente=id).latest('data')
+        if checklist.data.date() == timezone.now().date():
+            setattr(checklist, name, value)
+            checklist.save()
+        else:
+            checklist.pk = None
+            setattr(checklist, name, value)
+            checklist.save()
+
+    return JsonResponse({"status": 'Success'}) 
 
 @login_required(login_url='/login_prof')
 def remove(request):

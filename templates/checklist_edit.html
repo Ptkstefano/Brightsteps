@@ -36,13 +36,13 @@
       </div>
 
 
-      <form method="post" action ="/checklist_edit/{{paciente.pk}}">
+      <form method="post" action ="/checklist_edit/{{paciente.pk}}" id='form'>
 
         {% csrf_token %}
 
 
 
-        <input type="hidden" name="paciente" value="{{paciente.pk}}">
+        <input id ="pacienteID" type="hidden" name="paciente" value="{{paciente.pk}}">
 
         {% for form in checklist_form %}
 
@@ -96,12 +96,6 @@
               <button type="button" class="subtablinks" onclick="openSubTab(event, 'ipe')">Independência pessoal</button>
             </div>
           </div>
-
-          <div class="subtab__submit">
-            <input name = 'submit' type="submit" value="{{ mensagem }}">
-          </div>
-
-
 
               <div id="cre" name="cre" class="subtabcontent">
                 <h1>Comunicação receptiva</h1>
@@ -204,10 +198,6 @@
           {% if form.name == 'nv1_ipe_18' or form.name == 'nv2_ipe_26' or form.name == 'nv3_ipe_19' or form.name == 'nv4_ipe_18' %}
           <!-- Closure of last sub tab -->
           </div>
-
-          <div class="subtab__submit">
-            <input name = 'submit' type="submit" value="{{ mensagem }}">
-          </div>
           
           <!-- Closure of main tab -->
           </div>
@@ -221,5 +211,40 @@
 
     </div>
   </main>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.21.1/axios.min.js"></script>
+
+  <script>
+    
+    const form = document.getElementById("form");
+    const radioButtons = form.querySelectorAll('input[type="radio"]');
+
+    radioButtons.forEach((radioButton) => {
+    radioButton.addEventListener("click", function () {
+      const selectedName = this.getAttribute("name");
+      const selectedValue = this.getAttribute("value");
+      const pacienteID = document.getElementById('pacienteID').value
+
+      let data = new FormData();
+      data.append("id", pacienteID)
+      data.append("name", selectedName) 
+      data.append("value", selectedValue) 
+      data.append("csrfmiddlewaretoken", '{{csrf_token}}');
+
+      // Send POST request using Axios
+      axios
+        .post("/checklist_ajax", data)
+        .then((response) => {
+          console.log("POST request successful:", response.data);
+        })
+        .catch((error) => {
+          console.error("POST request failed:", error);
+        });
+    });
+  });
+
+    
+    </script>
+
 </body>
 </html>

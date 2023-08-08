@@ -32,6 +32,7 @@ urlpatterns = [
     path('checklist/<str:paciente_cod>', views.checklist),
     path('checklist/historico/<str:paciente_cod>', views.checklist_historico),
     path('checklist_edit/<int:paciente_id>', views.checklist_edit),
+    path('checklist_ajax', views.checklist_ajax),
     path('gerencia', views.gerencia),
     path('gerencia/change', views.change),
     path('gerencia/add', views.add),
