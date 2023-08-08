@@ -39,5 +39,4 @@ urlpatterns = [
     path('gerencia/remove', views.remove),
     path('mudarsenha', views.mudar_senha),
     path('admin/admin', admin.site.urls),
-    path('backup', views.backup)
 ]

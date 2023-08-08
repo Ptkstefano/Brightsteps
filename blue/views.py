@@ -374,13 +374,3 @@ def checklist_find(request):
         return redirect(checklist, paciente_cod=paciente.cod_acesso)
     else:
         return redirect(index)
-
-@login_required(login_url='/login_prof')
-def backup(request):
-    profissional_logado = get_object_or_404(Profissional, user=request.user)
-    if profissional_logado.admin == False:
-        return redirect(main)
-    else:
-        file_path = os.path.join(BASE_DIR, 'db.sqlite3')
-        response = FileResponse(open(file_path, 'rb'))
-        return response
